@@ -46,8 +46,9 @@ function Get-StatusFromValue {
         Default { "Not connected" }
     }
 } #end Get-StatusFromValue function
+
 # \*\*\* Entry point to script \*\*\*
 Get-WmiObject -Class win32_networkadapter -computer $computer |
-    Select-Object Name, @{LABEL = "Status"; EXPRESSION = { Get-StatusFromValue $_.NetConnectionStatus}}
+    Select-Object Name, @{n = "Status"; e = { Get-StatusFromValue $_.NetConnectionStatus}}
     
     
